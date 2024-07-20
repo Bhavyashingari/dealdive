@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <h1>Recommendations for {{ user.user_id }}:</h1>
+        <ul>
+            {% for item in recommendations %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

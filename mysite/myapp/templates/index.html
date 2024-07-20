@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Welcome!</h1>
+
+    <form method="get" action="">
+        <input type="text" name="q" value="{{ search_query }}" placeholder="Search...">
+        <input type="submit" value="Search">
+    </form>
+
+    <h2>Most Frequent Searches:</h2>
+    <ul>
+        {% for search, count in most_frequent_searches %}
+            <li>{{ search }} ({{ count }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Most Frequent Purchases:</h2>
+    <ul>
+        {% for item, count in most_frequent_purchases %}
+            <li>{{ item }} ({{ count }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Get Recommendations:</h2>
+    <form method="get" action="{% url 'recommendations' user_id=1 %}">  
+        <input type="submit" value="Recommend for User 1"> 
+    </form>
+</body>
+</html>
+
+# recommendations.html (unchanged)
+<!DOCTYPE html>
+<html>
+<body>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <h1>Recommendations for {{ user.user_id }}:</h1>
+        <ul>
+            {% for item in recommendations %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
